@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+    <h1>Le livre {{ book.title }}</h1>
+    <p><strong>Genre :</strong> {{ book.type }}</p>
+    <p><strong>Date de publication :</strong> {{ book.pubDate|date('d/m/Y') }}</p>
+    {% if book.poster %}
+        <img src="{{ book.poster }}" alt="{{ book.title }}"/>
+    {% endif %}
+
+    <h3>Les notes ({{ book.reviews|length }}) :</h3>
+    <div>
+        {% for review in book.reviews %}
+            <p><strong>Note :</strong> {{ review.score }}/10</p>
+            {% if review.comment %}
+                <p><strong>Commentaire :</strong> {{ review.comment }}</p>
+            {% endif %}
+            <br />
+        {% endfor %}
+    </div>
+
+    <a href="{{ path('library_show', {'id': book.library.id}) }}">Retour</a>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <h1>Les libraries ({{ libraries|length }}) :</h1>
+
+    <ul>
+        {% for library in libraries %}
+            <li>
+                <a href="{{ path('library_show', {'id': library.id}) }}">{{ library.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
